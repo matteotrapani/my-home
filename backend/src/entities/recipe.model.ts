@@ -1,6 +1,6 @@
-import mongoose, { Document, Schema } from "mongoose";
-import { IIngredient, IngredientSchema } from "./ingredient.model";
-import { IRecipeStep, RecipeStepSchema } from "./recipeStep.model";
+import mongoose, { Document, Schema } from 'mongoose';
+import { IIngredient, IngredientSchema } from './ingredient.model';
+import { IRecipeStep, RecipeStepSchema } from './recipeStep.model';
 
 const RecipeSchema: Schema = new Schema({
     cookingTime: {type: Number, required: false},
@@ -28,4 +28,4 @@ export interface IRecipe extends Document {
     linkVideo: string;
 }
 
-export const Recipe =  mongoose.model<IRecipe>("Recipe", RecipeSchema);
+export const Recipe =  mongoose.model<IRecipe>('Recipe', RecipeSchema);

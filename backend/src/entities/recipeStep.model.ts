@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
 export const RecipeStepSchema: Schema = new Schema({
     description: {type: String, required: true},
@@ -12,4 +12,4 @@ export interface IRecipeStep extends Document {
     description: string;
 }
 
-export const RecipeStep = mongoose.model<IRecipeStep>("RecipeStep", RecipeStepSchema);
+export const RecipeStep = mongoose.model<IRecipeStep>('RecipeStep', RecipeStepSchema);

@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const connectionUrl = "mongodb://localhost:27017";
-const dbName = "myHome";
+const connectionUrl = 'mongodb://localhost:27017';
+const dbName = 'myHome';
 
 mongoose.connect(`${connectionUrl}/${dbName}`, {
     useCreateIndex: true,
@@ -11,9 +11,9 @@ mongoose.connect(`${connectionUrl}/${dbName}`, {
     console.error(err);
 });
 
-mongoose.connection.on("connected", () => {
-    console.log("connected");
+mongoose.connection.on('connected', () => {
+    console.log('connected');
 });
-mongoose.connection.on("disconnected", () => {
-    console.log("disconnected");
+mongoose.connection.on('disconnected', () => {
+    console.log('disconnected');
 });
