@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-
+    
 const connectionUrl = 'mongodb://localhost:27017';
 const dbName = 'myHome';
 
-mongoose.connect(`${connectionUrl}/${dbName}`, {
+mongoose.connect(process.env.MONGOLAB_URI || `${connectionUrl}/${dbName}`, {
     useCreateIndex: true,
     useNewUrlParser : true,
     useUnifiedTopology: true
