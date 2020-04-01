@@ -4,7 +4,7 @@ import recipesController from './controllers/recipesController';
 import './db/mongoose';
 
 const app = express();
-const port = 8080; // default port to listen
+const port = process.env.PORT || 8080; // default port to listen
 const allowedExt = [
     '.js',
     '.ico',
