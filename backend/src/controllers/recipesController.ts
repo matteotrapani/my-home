@@ -1,5 +1,5 @@
 import express from 'express';
-import { Recipe } from './../entities/recipe.model';
+import { Recipe } from '../entities/recipe.model';
 
 const router = express.Router();
 

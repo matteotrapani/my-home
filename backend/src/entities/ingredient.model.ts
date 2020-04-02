@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import { UnitMeasure } from '../contracts/unitMeasure';
+import {UnitMeasure} from '../contracts/unitMeasure';
 
 export const IngredientSchema: Schema = new Schema({
     name: {type: String, required: true, unique: false},

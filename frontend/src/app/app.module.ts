@@ -11,11 +11,30 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { RecipesComponent } from './recipes/recipes.component';
+import { HomeComponent } from './home/home.component';
+import {RouterModule, Routes} from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+const appRoutes: Routes = [
+
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'recipes',
+    component: RecipesComponent
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent
+    MainNavComponent,
+    RecipesComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +45,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    RouterModule.forRoot(appRoutes),
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
