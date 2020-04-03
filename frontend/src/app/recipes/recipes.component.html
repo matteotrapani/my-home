@@ -1,10 +1,11 @@
-<mat-toolbar color="secondary">Recipes</mat-toolbar>
+<!--CHECK THIS https://stackoverflow.com/questions/52206588/align-mat-cards-content-image-text-and-buttons-->
 <div class="container">
-  <mat-grid-list cols="3" gutterSize="1px">
+  <mat-toolbar color="secondary">Recipes</mat-toolbar>
+  <mat-grid-list cols="2" gutterSize="4px" rowHeight="210px">
     <mat-grid-tile *ngFor="let recipe of recipes">
-      <mat-card [style.width]="'90%'" >
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
-        <mat-card-subtitle>{{recipe.name}}</mat-card-subtitle>
+      <mat-card >
+        <img mat-card-image class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="" >
+        <mat-card-content><p>{{recipe.name}}</p></mat-card-content>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
