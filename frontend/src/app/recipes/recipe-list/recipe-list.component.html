@@ -1,0 +1,16 @@
+<!--CHECK THIS https://stackoverflow.com/questions/52206588/align-mat-cards-content-image-text-and-buttons-->
+<mat-toolbar color="secondary">Recipes</mat-toolbar>
+<mat-grid-list [cols]="(isHandset$ | async) ? 2 : 3" gutterSize="4px" rowHeight="210px" [style.margin]="'1%'">
+  <mat-grid-tile *ngFor="let recipe of recipes">
+    <mat-card >
+      <img mat-card-image class="image" src="../../../assets/biscuits.jpeg" alt="" >
+      <mat-card-content><p>{{recipe.name}}</p></mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<div class="bottom-right">
+  <a mat-fab color="primary" routerLink="add">
+    <mat-icon>add</mat-icon>
+  </a>
+</div>
+<router-outlet></router-outlet>

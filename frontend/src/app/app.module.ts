@@ -4,18 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatButtonModule} from '@angular/material/button';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
+import {MaterialModule} from './material.module';
+import {RecipeItemComponent} from './recipes/recipe-list/recipe-item/recipe-item.component';
+import {RecipeAddComponent, RecipeAddDialogEntryComponent} from './recipes/recipe-add/recipe-add.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 const appRoutes: Routes = [
 
@@ -25,7 +23,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'recipes',
-    component: RecipesComponent
+    component: RecipeListComponent,
+    children: [
+      { path: 'add', component: RecipeAddDialogEntryComponent },
+    ]
   }
 ];
 
@@ -33,22 +34,21 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MainNavComponent,
-    RecipesComponent,
+    RecipeListComponent,
+    RecipeItemComponent,
+    RecipeAddDialogEntryComponent,
+    RecipeAddComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
     LayoutModule,
     RouterModule.forRoot(appRoutes),
-    MatCardModule,
-    MatGridListModule
+    MaterialModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
