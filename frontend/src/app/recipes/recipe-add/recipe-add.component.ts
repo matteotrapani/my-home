@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {ActivatedRoute, Router} from '@angular/router';
+import {RecipesService} from '../../services/recipes.service';
+import {Recipe} from '../../models/recipe.model';
 
 @Component({
   template: ''
@@ -25,10 +27,19 @@ export class RecipeAddDialogEntryComponent {
   styleUrls: ['./recipe-add.component.css']
 })
 export class RecipeAddComponent implements OnInit {
+  name: string;
+  link: string;
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<RecipeAddComponent>) { }
+  constructor(private bottomSheetRef: MatBottomSheetRef<RecipeAddComponent>, private recipesService: RecipesService) { }
 
   ngOnInit(): void {
   }
 
+  addRecipe(): void {
+    const recipe = new Recipe();
+    recipe.name = this.name;
+    recipe.link = this.link;
+    this.recipesService.add(recipe);
+    this.bottomSheetRef.dismiss();
+  }
 }

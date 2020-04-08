@@ -1,5 +1,29 @@
 .image{
-  height: 150px; /* adjust as needed */
+  height: 80px; /* adjust as needed */
   object-fit: cover;
 }
-
+.wrap {
+  max-width:960px;
+  background:#f9f9f9;
+  margin:auto;
+  text-align:justify;
+  width:100%;
+  font-size:0.1px;/* Kill white-space*/
+}
+.box {
+  display:inline-block;
+  background:red;
+  border:1px solid #000;
+  padding:5px;
+  vertical-align:top;
+}
+.wrap:after{
+  content:"";
+  display:inline-block;
+  height:1px;
+  width:0;
+  font-size:0;
+  line-height:0;
+  overflow:hidden;
+  margin:0 100% 0 0;
+}

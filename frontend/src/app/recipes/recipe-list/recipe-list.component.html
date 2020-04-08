@@ -3,8 +3,26 @@
 <mat-grid-list [cols]="(isHandset$ | async) ? 2 : 3" gutterSize="4px" rowHeight="210px" [style.margin]="'1%'">
   <mat-grid-tile *ngFor="let recipe of recipes">
     <mat-card >
-      <img mat-card-image class="image" src="../../../assets/biscuits.jpeg" alt="" >
+      <img *ngIf="recipe.image == '' || recipe.image == undefined" mat-card-image class="image" src="../../../assets/biscuits.jpeg" alt="" >
+      <img *ngIf="recipe.image != '' && recipe.image != undefined" mat-card-image class="image" [src]="'data:image/jpg;base64,' + recipe.image" alt="">
       <mat-card-content><p>{{recipe.name}}</p></mat-card-content>
+      <mat-card-actions>
+          <!--<a mat-button style="float: left">VIEW</a>-->
+          <a mat-icon-button
+             *ngIf="recipe.link != '' && recipe.link != undefined"
+             [href]="recipe.link"
+             style="float: right"
+             target="_blank" rel="noopener noreferrer"
+          >
+            <mat-icon>explore</mat-icon>
+          </a>
+          <!--<a mat-icon-button
+             href="#"
+             style="float: right"
+          >
+            <mat-icon>edit</mat-icon>
+          </a>-->
+      </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

@@ -13,6 +13,7 @@ export interface IRecipe extends IBaseModel {
     steps: [IRecipeStep];
     link: string;
     linkVideo: string;
+    image: string;
 }
 
 export class Recipe extends BaseModel implements IRecipe {
@@ -26,4 +27,5 @@ export class Recipe extends BaseModel implements IRecipe {
   restingTime: number;
   steps: [IRecipeStep];
   totalTime: number;
+  image: string;
 }

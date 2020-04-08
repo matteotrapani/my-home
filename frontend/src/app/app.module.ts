@@ -14,6 +14,8 @@ import {RecipeItemComponent} from './recipes/recipe-list/recipe-item/recipe-item
 import {RecipeAddComponent, RecipeAddDialogEntryComponent} from './recipes/recipe-add/recipe-add.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {RecipesService} from './services/recipes.service';
 
 const appRoutes: Routes = [
 
@@ -48,9 +50,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MaterialModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [RecipesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
