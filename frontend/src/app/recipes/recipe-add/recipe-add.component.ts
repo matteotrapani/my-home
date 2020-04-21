@@ -3,6 +3,7 @@ import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import {ActivatedRoute, Router} from '@angular/router';
 import {RecipesService} from '../../services/recipes.service';
 import {Recipe} from '../../models/recipe.model';
+import SnackBarService from '../../services/snackbar.service';
 
 @Component({
   template: ''
@@ -30,7 +31,10 @@ export class RecipeAddComponent implements OnInit {
   name: string;
   link: string;
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<RecipeAddComponent>, private recipesService: RecipesService) { }
+  constructor(
+    private bottomSheetRef: MatBottomSheetRef<RecipeAddComponent>,
+    private recipesService: RecipesService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +43,12 @@ export class RecipeAddComponent implements OnInit {
     const recipe = new Recipe();
     recipe.name = this.name;
     recipe.link = this.link;
-    this.recipesService.add(recipe);
-    this.bottomSheetRef.dismiss();
+    this.recipesService.add(recipe)
+      .subscribe(
+        async response => {
+          this.bottomSheetRef.dismiss();
+        },
+        error => this.snackBarService.showError('An error occurred while adding a recipe')
+      );
   }
 }

@@ -2,3 +2,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bottom-right {
+  z-index: 5;
+  position: fixed;
+  display: flex;
+  align-self: flex-end;
+  bottom: 1%;
+  right: 3%;
+}
+
+.background-red {
+  background-color: red;
+  color: white;
+}
+
+.background-red .mat-simple-snackbar-action {
+  color: white !important;
+}

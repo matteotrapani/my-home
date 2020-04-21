@@ -1,8 +1,0 @@
-.bottom-right {
-  z-index: 5;
-  position: fixed;
-  display: flex;
-  align-self: flex-end;
-  bottom: 1%;
-  right: 3%;
-}

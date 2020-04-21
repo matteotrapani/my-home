@@ -8,11 +8,11 @@ const RecipeSchema: Schema = new Schema({
     link: {type: String, required: false},
     linkVideo: {type: String, required: false},
     name: {type: String, required: true},
-    portions: {type: Number, required: true},
+    portions: {type: Number, required: false},
     preparationTime: {type: Number, required: false},
     restingTime: {type: Number, required: false},
     steps: [RecipeStepSchema],
-    totalTime: {type: Number, required: true},
+    totalTime: {type: Number, required: false},
 });
 
 export interface IRecipe extends Document {

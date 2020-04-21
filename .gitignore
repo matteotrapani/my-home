@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 */dist
 */node_modules
+*.env

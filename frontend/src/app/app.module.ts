@@ -16,6 +16,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {RecipesService} from './services/recipes.service';
+import {HttpClientModule} from '@angular/common/http';
+import SnackbarService from './services/snackbar.service';
 
 const appRoutes: Routes = [
 
@@ -51,9 +53,10 @@ const appRoutes: Routes = [
     MaterialModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [RecipesService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-    
+
 const connectionUrl = 'mongodb://localhost:27017';
 const dbName = 'myHome';
 

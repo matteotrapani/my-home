@@ -1,25 +1,20 @@
 import {IRecipe, Recipe} from '../models/recipe.model';
 import {EventEmitter, Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class RecipesService {
-  private recipes: Array<IRecipe> = [];
-  recipesUpdated = new EventEmitter();
-  // constructor() {
-  //   for (let i = 0; i < 10; i++) {
-  //     const recipe: Recipe = new Recipe();
-  //     recipe.id = i.toString();
-  //     recipe.name = `Torta di mele ${i}`;
-  //     this.recipes.push(recipe);
-  //   }
-  // }
+  serverUrl = environment.baseUrl;
 
-  get(): Array<IRecipe> {
-    return this.recipes;
+  constructor(private http: HttpClient) {}
+
+  get(): Observable<Array<IRecipe>> {
+    return this.http.get<Array<IRecipe>>( `${this.serverUrl}api/recipes`);
   }
 
-  add(recipe: IRecipe): void {
-    this.recipes.push(recipe);
-    this.recipesUpdated.emit();
+  add(recipe: IRecipe): Observable<IRecipe> {
+    return this.http.post<IRecipe>(`${this.serverUrl}api/recipes`, recipe);
   }
 }
