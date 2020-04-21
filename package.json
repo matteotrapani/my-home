@@ -7,7 +7,7 @@
     "ng": "ng",
     "dev-server": "nodemon",
     "start": "node dist/index.js",
-    "build": "tsc --project backend/tsconfig.json --allowSyntheticDefaultImports --outDir dist && cd frontend && ng build --output-path ../dist/my-home",
+    "build": "tsc --project backend/tsconfig.json --allowSyntheticDefaultImports --outDir dist && cd frontend && ng build --prod --output-path ../dist/my-home",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
