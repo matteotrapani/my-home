@@ -27,15 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
-if (process.env.NODE_ENV === 'development') {
-    const corsOptions = {
-        origin: 'http://localhost:4200',
-        optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-    };
-    app.use('/api/recipes', cors(corsOptions), recipesController);
-} else {
-    app.use('/api/recipes', recipesController);
-}
+app.use('/api/recipes', cors(), recipesController);
 app.get('*', (req, res) => {
     if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
         res.sendFile(path.resolve(`dist/my-home/${req.url}`));
