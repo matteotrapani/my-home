@@ -5,6 +5,9 @@ import recipesController from './controllers/recipesController';
 import './db/mongoose';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import compression from 'compression';
+import * as fs from 'fs';
+import spdy from 'spdy';
 
 dotenv.config();
 
@@ -22,13 +25,19 @@ const allowedExt = [
     '.woff2',
 ];
 
+const sslOptions = {
+    key: fs.readFileSync(__dirname + '/server.key'),
+    cert:  fs.readFileSync(__dirname + '/server.crt')
+}
+
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // parse application/json
 app.use(bodyParser.json());
 // enable text compression
 app.use(compression());
+
 app.use('/api/recipes', cors(), recipesController);
 app.get('*', (req, res) => {
     if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
@@ -38,7 +47,12 @@ app.get('*', (req, res) => {
     }
 });
 
-// start the Express server
-app.listen( port, () => {
-    console.log( `server started at http://localhost:${ port }` );
-} );
+spdy
+    .createServer(sslOptions, app)
+    .listen(port, () => {
+        console.log( `server started at http://localhost:${ port }` );
+    });
+// // start the Express server
+// app.listen( port, () => {
+//     console.log( `server started at http://localhost:${ port }` );
+// } );
