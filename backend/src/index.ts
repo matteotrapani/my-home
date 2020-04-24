@@ -27,12 +27,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+// enable text compression
+app.use(compression());
 app.use('/api/recipes', cors(), recipesController);
 app.get('*', (req, res) => {
     if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
-        res.sendFile(path.resolve(`dist/my-home/${req.url}`));
+        res.sendFile(path.resolve(`dist/frontend/${req.url}`));
     } else {
-        res.sendFile(path.resolve('dist/my-home/index.html'));
+        res.sendFile(path.resolve('dist/frontend/index.html'));
     }
 });
 

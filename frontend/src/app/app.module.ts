@@ -18,6 +18,8 @@ import {FormsModule} from '@angular/forms';
 import {RecipesService} from './services/recipes.service';
 import {HttpClientModule} from '@angular/common/http';
 import SnackbarService from './services/snackbar.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
 
@@ -54,7 +56,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
