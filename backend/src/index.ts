@@ -13,46 +13,33 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080; // default port to listen
-const allowedExt = [
-    '.js',
-    '.ico',
-    '.css',
-    '.png',
-    '.jpg',
-    '.ttf',
-    '.svg',
-    '.woff',
-    '.woff2',
-];
 
 const sslOptions = {
     key: fs.readFileSync(__dirname + '/server.key'),
     cert:  fs.readFileSync(__dirname + '/server.crt')
 }
 
-
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
-app.use(bodyParser.json());
-// enable text compression
-app.use(compression());
+app.use(bodyParser.urlencoded({ extended: false }))
+    // parse application/json
+    .use(bodyParser.json())
+    // enable text compression
+    .use(compression())
+    .use(cors())
+    .use(express.static(__dirname + '/frontend'));
 
-app.use('/api/recipes', cors(), recipesController);
+app.use('/api/recipes', recipesController);
+
 app.get('*', (req, res) => {
-    if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
-        res.sendFile(path.resolve(`dist/frontend/${req.url}`));
-    } else {
-        res.sendFile(path.resolve('dist/frontend/index.html'));
-    }
+    res.sendFile(path.resolve(__dirname + '/frontend/index.html')); // load the single view file (angular will handle the page changes on the front-end)
 });
 
-spdy
-    .createServer(sslOptions, app)
-    .listen(port, () => {
-        console.log( `server started at http://localhost:${ port }` );
-    });
-// // start the Express server
-// app.listen( port, () => {
-//     console.log( `server started at http://localhost:${ port }` );
-// } );
+// spdy
+//     .createServer(sslOptions, app)
+//     .listen(port, () => {
+//         console.log( `server started at https://localhost:${ port }` );
+//     });
+// start the Express server
+app.listen( port, () => {
+    console.log( `server started at http://localhost:${ port }` );
+} );
