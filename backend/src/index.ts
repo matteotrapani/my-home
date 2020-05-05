@@ -8,8 +8,6 @@ import dotenv from 'dotenv';
 import compression from 'compression';
 import * as fs from 'fs';
 import spdy from 'spdy';
-import { Request, Response, NextFunction} from 'express';
-import {sslRedirect} from './middlewares/sslRedirect.middleware';
 
 dotenv.config();
 
@@ -31,8 +29,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
     .use(express.static(__dirname + '/frontend'));
 
 app.use('/api/recipes', recipesController);
-
-app.use(sslRedirect);
 
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/frontend/index.html')); // load the single view file (angular will handle the page changes on the front-end)
