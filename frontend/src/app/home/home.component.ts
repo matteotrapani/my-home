@@ -12,8 +12,10 @@ export class HomeComponent implements OnInit {
   constructor(private platform: Platform) { }
 
   ngOnInit(): void {
+    alert('platform: ' + this.platform.ANDROID);
     if (this.platform.ANDROID) {
       window.addEventListener('beforeinstallprompt', (event: any) => {
+        alert('add listener');
         event.preventDefault();
         this.promptEvent = event;
       });
@@ -21,7 +23,15 @@ export class HomeComponent implements OnInit {
   }
 
   installPwa() {
-    this.promptEvent.prompt();
+    try {
+      alert('install PWA');
+      alert(this.promptEvent);
+      this.promptEvent.prompt();
+
+      alert('installed PWA');
+    } catch (e) {
+      alert(e);
+    }
   }
 
 }
