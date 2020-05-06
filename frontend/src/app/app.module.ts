@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
 import SnackbarService from './services/snackbar.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {PwaService} from './services/pwa.service';
 
 const appRoutes: Routes = [
 
@@ -35,6 +36,8 @@ const appRoutes: Routes = [
     ]
   }
 ];
+
+const initializer = (pwaService: PwaService) => () => pwaService.initPwa();
 
 @NgModule({
   declarations: [
@@ -59,7 +62,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    {provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

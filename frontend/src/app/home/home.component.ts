@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Platform} from '@angular/cdk/platform';
+import {PwaService} from '../services/pwa.service';
 
 @Component({
   selector: 'app-home',
@@ -9,29 +10,22 @@ import {Platform} from '@angular/cdk/platform';
 export class HomeComponent implements OnInit {
   private promptEvent: any;
 
-  constructor(private platform: Platform) { }
+  constructor(private pwaService: PwaService) { }
 
   ngOnInit(): void {
-    alert('platform: ' + this.platform.ANDROID);
-    if (this.platform.ANDROID) {
-      window.addEventListener('beforeinstallprompt', (event: any) => {
-        alert('add listener');
-        event.preventDefault();
-        this.promptEvent = event;
-      });
-    }
   }
 
   installPwa() {
-    try {
-      alert('install PWA');
-      alert(this.promptEvent);
-      this.promptEvent.prompt();
-
-      alert('installed PWA');
-    } catch (e) {
-      alert(e);
-    }
+    this.pwaService.promptInstallation();
+    // try {
+    //   alert('install PWA');
+    //   alert(this.promptEvent);
+    //   this.promptEvent.prompt();
+    //
+    //   alert('installed PWA');
+    // } catch (e) {
+    //   alert(e);
+    // }
   }
 
 }
