@@ -7,11 +7,14 @@ import {Platform} from '@angular/cdk/platform';
 export class PwaService {
   private promptEvent: any;
 
-  constructor(private platform: Platform) { }
+  constructor(private platform: Platform) {
+    alert('service');
+  }
 
   initPwa() {
     if (this.platform.ANDROID) {
       window.addEventListener('beforeinstallprompt', (event: any) => {
+        alert('beforeinstallprompt');
         event.preventDefault();
         this.promptEvent = event;
       });

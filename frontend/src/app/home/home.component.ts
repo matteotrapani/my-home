@@ -10,7 +10,10 @@ import {PwaService} from '../services/pwa.service';
 export class HomeComponent implements OnInit {
   private promptEvent: any;
 
-  constructor(private pwaService: PwaService) { }
+  constructor(private pwaService: PwaService) {
+
+    alert('home');
+  }
 
   ngOnInit(): void {
   }
