@@ -19,6 +19,15 @@ export class PwaService {
   }
 
   promptInstallation() {
-    this.promptEvent.prompt();
+    try {
+      alert('install PWA');
+      alert(this.promptEvent);
+      this.promptEvent.prompt();
+
+      alert('installed PWA');
+    } catch (e) {
+      alert(e);
+    }
+    // this.promptEvent.prompt();
   }
 }
