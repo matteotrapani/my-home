@@ -11,7 +11,6 @@ export class HomeComponent implements OnInit {
   private promptEvent: any;
 
   constructor(private pwaService: PwaService) {
-
     alert('home');
   }
 

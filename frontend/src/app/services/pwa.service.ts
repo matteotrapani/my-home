@@ -22,15 +22,15 @@ export class PwaService {
     // this.showButton = true;
   }
 
-  // initPwa() {
-  //   if (this.platform.ANDROID) {
-  //     window.addEventListener('beforeinstallprompt', (event: any) => {
-  //       alert('beforeinstallprompt');
-  //       event.preventDefault();
-  //       this.promptEvent = event;
-  //     });
-  //   }
-  // }
+  initPwa() {
+    // if (this.platform.ANDROID) {
+    //   window.addEventListener('beforeinstallprompt', (event: any) => {
+    //     alert('beforeinstallprompt');
+    //     event.preventDefault();
+    //     this.promptEvent = event;
+    //   });
+    // }
+  }
 
   promptInstallation() {
     try {
