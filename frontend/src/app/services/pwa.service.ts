@@ -19,7 +19,7 @@ export class PwaService {
     e.preventDefault();
     // Stash the event so it can be triggered later.
     this.promptEvent = e;
-    this.showInstallButton.next(false);
+    this.showInstallButton.next(true);
   }
 
   initPwa() {}
