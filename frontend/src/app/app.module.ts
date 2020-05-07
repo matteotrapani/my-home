@@ -67,4 +67,8 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwa();
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    alert('app module');
+  }
+}
