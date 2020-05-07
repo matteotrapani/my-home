@@ -1,6 +1,6 @@
-<mat-toolbar color="secondary">Home
-<mat-card>
-  <mat-card-content >
+<mat-toolbar color="secondary">Home</mat-toolbar>
+<mat-card *ngIf="showButton === true">
+  <mat-card-content>
     <button mat-button (click)="installPwa()">
       Add to Home screen
     </button>
