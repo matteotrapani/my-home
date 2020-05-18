@@ -34,7 +34,13 @@ export class RecipeAddComponent implements OnInit {
   constructor(
     private bottomSheetRef: MatBottomSheetRef<RecipeAddComponent>,
     private recipesService: RecipesService,
-    private snackBarService: SnackBarService) { }
+    private snackBarService: SnackBarService,
+    private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.name = params.name;
+      this.link = params.link;
+    });
+  }
 
   ngOnInit(): void {
   }

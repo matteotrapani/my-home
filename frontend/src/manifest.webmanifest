@@ -55,5 +55,14 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
-  ]
+  ],
+  "share_target": {
+    "action": "api/recipes",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "name",
+      "text": "link"
+    }
+  }
 }
