@@ -8,7 +8,9 @@ export class PwaService {
   private promptEvent: any;
   public showInstallButton = new BehaviorSubject(false);
 
-  constructor() {}
+  constructor() {
+    alert('SERVICE');
+  }
 
 
   @HostListener('window:beforeinstallprompt', ['$event'])
@@ -17,6 +19,7 @@ export class PwaService {
     e.preventDefault();
     // Stash the event so it can be triggered later.
     this.promptEvent = e;
+    alert('before install prompt');
     this.showInstallButton.next(true);
   }
 
