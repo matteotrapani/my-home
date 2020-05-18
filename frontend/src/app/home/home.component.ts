@@ -12,17 +12,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   public showButton: boolean;
   private showButtonSubscription: Subscription;
 
-  constructor(private pwaService: PwaService) {
-    alert('HOME COMPONENT');
-  }
+  constructor(private pwaService: PwaService) {}
 
   ngOnInit(): void {
-    alert('HOME COMPONENT ON INIT');
     this.showButtonSubscription = this.pwaService.showInstallButton.subscribe(canShow => {
-      alert('SHOW INSTALL BUTTON ' + canShow);
       this.showButton = canShow;
     });
-    alert(this.showButtonSubscription);
   }
   ngOnDestroy(): void {
     this.showButtonSubscription.unsubscribe();
