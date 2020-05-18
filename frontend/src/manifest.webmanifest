@@ -57,9 +57,8 @@
     }
   ],
   "share_target": {
-    "action": "api/recipes",
-    "method": "POST",
-    "enctype": "multipart/form-data",
+    "action": "recipes/add",
+    "method": "GET",
     "params": {
       "title": "name",
       "text": "link"
