@@ -12,20 +12,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {MaterialModule} from './material.module';
 import {RecipeItemComponent} from './recipes/recipe-list/recipe-item/recipe-item.component';
 import {RecipeAddComponent, RecipeAddDialogEntryComponent} from './recipes/recipe-add/recipe-add.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
-import {RecipesService} from './services/recipes.service';
 import {HttpClientModule} from '@angular/common/http';
-import SnackbarService from './services/snackbar.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {PwaService} from './services/pwa.service';
 import {AlertComponent} from './alert/alert.component';
-import {MatDialogModule} from '@angular/material/dialog';
 
 const appRoutes: Routes = [
-
   {
     path: '',
     component: HomeComponent
