@@ -21,6 +21,8 @@ import SnackbarService from './services/snackbar.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {PwaService} from './services/pwa.service';
+import {AlertComponent} from './alert/alert.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const appRoutes: Routes = [
 
@@ -47,7 +49,8 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwa();
     RecipeItemComponent,
     RecipeAddDialogEntryComponent,
     RecipeAddComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +59,9 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwa();
     LayoutModule,
     RouterModule.forRoot(appRoutes),
     MaterialModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true}

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RecipesService} from '../../services/recipes.service';
 import {Recipe} from '../../models/recipe.model';
 import SnackBarService from '../../services/snackbar.service';
+import {SwUpdate} from '@angular/service-worker';
+import {Subscription} from 'rxjs';
 
 @Component({
   template: ''
@@ -27,22 +29,28 @@ export class RecipeAddDialogEntryComponent {
   templateUrl: './recipe-add.component.html',
   styleUrls: ['./recipe-add.component.css']
 })
-export class RecipeAddComponent implements OnInit {
+export class RecipeAddComponent implements OnInit, OnDestroy {
   name: string;
   link: string;
+
+  queryParameterSubscription: Subscription;
 
   constructor(
     private bottomSheetRef: MatBottomSheetRef<RecipeAddComponent>,
     private recipesService: RecipesService,
     private snackBarService: SnackBarService,
     private route: ActivatedRoute) {
-    this.route.queryParams.subscribe(params => {
-      this.name = params.name;
-      this.link = params.link;
-    });
+  }
+
+  ngOnDestroy(): void {
+    this.queryParameterSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
+    this.queryParameterSubscription = this.route.queryParams.subscribe(params => {
+      this.name = params.name;
+      this.link = params.link;
+    });
   }
 
   addRecipe(): void {
