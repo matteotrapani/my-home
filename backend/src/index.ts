@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import compression from 'compression';
 import * as fs from 'fs';
-import spdy from 'spdy';
+import http from 'http';
 
 dotenv.config();
 
@@ -34,11 +34,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/frontend/index.html')); // load the single view file (angular will handle the page changes on the front-end)
 });
 
-// spdy
-//     .createServer(sslOptions, app)
-//     .listen(port, () => {
-//         console.log( `server started at https://localhost:${ port }` );
-//     });
 // start the Express server
 app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );

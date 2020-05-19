@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import { IIngredient, IngredientSchema } from './ingredient.model';
 import { IRecipeStep, RecipeStepSchema } from './recipeStep.model';
+import {IImage, ImageSchema} from './image.model';
 
 const RecipeSchema: Schema = new Schema({
     cookingTime: {type: Number, required: false},
@@ -13,6 +14,7 @@ const RecipeSchema: Schema = new Schema({
     restingTime: {type: Number, required: false},
     steps: [RecipeStepSchema],
     totalTime: {type: Number, required: false},
+    image: ImageSchema
 });
 
 export interface IRecipe extends Document {
@@ -26,6 +28,7 @@ export interface IRecipe extends Document {
     steps: [IRecipeStep];
     link: string;
     linkVideo: string;
+    image: IImage;
 }
 
 export const Recipe =  mongoose.model<IRecipe>('Recipe', RecipeSchema);

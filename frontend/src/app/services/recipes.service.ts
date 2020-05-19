@@ -14,6 +14,13 @@ export class RecipesService {
     return this.http.get<Array<IRecipe>>( `${this.serverUrl}api/recipes`);
   }
 
+  getImagesByUrl(url: string): Observable<Array<string>> {
+    return this.http.post<Array<string>>(`${this.serverUrl}api/recipes/imagesByUrl`, { url });
+  }
+  getImageDataToSave(url: string): Observable<Blob> {
+    return this.http.get<Blob>(url);
+  }
+
   add(recipe: IRecipe): Observable<IRecipe> {
     return this.http.post<IRecipe>(`${this.serverUrl}api/recipes`, recipe);
   }

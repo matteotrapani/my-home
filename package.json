@@ -39,6 +39,7 @@
     "g": "^2.0.1",
     "mongodb": "^3.3.4",
     "mongoose": "^5.7.12",
+    "node-images-scraper": "^1.0.0",
     "nodemon": "^2.0.2",
     "rxjs": "~6.5.4",
     "s": "^1.0.0",

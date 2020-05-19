@@ -53,16 +53,29 @@ export class RecipeAddComponent implements OnInit, OnDestroy {
     });
   }
 
-  addRecipe(): void {
+  async addRecipe(): Promise<void> {
     const recipe = new Recipe();
     recipe.name = this.name;
     recipe.link = this.link;
+    const self = this;
+    function onError() {
+      return error => self.snackBarService.showError('An error occurred while adding a recipe');
+    }
+    if (!recipe.image) {
+      const imagesUrls =  await this.recipesService.getImagesByUrl(this.link).toPromise().catch(onError);
+      if (imagesUrls.length > 0) {
+        const recipeImages = await this.recipesService.getImageDataToSave(imagesUrls[0]).toPromise().catch(onError);
+        if (recipeImages) {
+          recipe.image = recipeImages as Blob;
+        }
+      }
+    }
     this.recipesService.add(recipe)
       .subscribe(
         async response => {
           this.bottomSheetRef.dismiss();
         },
-        error => this.snackBarService.showError('An error occurred while adding a recipe')
+        onError()
       );
   }
 }
