@@ -1,6 +1,6 @@
 import express from 'express';
 import { Recipe } from '../entities/recipe.model';
-import {scrapeImages} from 'node-images-scraper';
+import {getImageBlob, scrapeImages} from 'node-images-scraper';
 
 const router = express.Router();
 
@@ -54,6 +54,11 @@ router.post('/imagesByUrl',async (req, res) => {
     const result = await scrapeImages(req.body.url);
     res.send(result.slice(0, 10));
 });
+
+router.post('/imageDataByUrl', async (req, res) => {
+    const result = await getImageBlob(req.body.url);
+    res.send(result);
+})
 
 
 export default router;
